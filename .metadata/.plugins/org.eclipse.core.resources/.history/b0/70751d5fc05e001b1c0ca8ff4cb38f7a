@@ -1,0 +1,20 @@
+package com.company.task;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TaskTest {
+	
+	@Scheduled
+	public void shedulerTest() {
+		System.out.println("매 분 1초마다 스케쥴링 테스트....");
+		
+	}
+	public void shedulerTest2() {
+		System.out.println("10초마다 스케쥴링 테스트....");
+		
+	}
+	
+	
+}

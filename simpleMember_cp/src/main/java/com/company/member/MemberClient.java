@@ -1,0 +1,28 @@
+package com.company.member;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.company.domain.MemberVO;
+import com.company.service.MemberService;
+
+public class MemberClient {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx =new ClassPathXmlApplicationContext("member_config.xml");
+		MemberService service = (MemberService)ctx.getBean("service");
+		
+		
+//		MemberVO insert = new insert("ozzam", "s880205", "오진어", "남","ozzam@gmail.com");
+//		if(service.memberInsert(member) {
+//			System.out.println("멤버 정보 입력");
+//		}
+		List<MemberVO> list = service.getMemberList();
+		for(MemberVO vo:list) {
+			System.out.println(vo);
+		}
+	}
+
+}

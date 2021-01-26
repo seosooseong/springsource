@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+$(function() {
+	$(function() {
+		$("button").click(function(e) {
+			e.preventDefault();//submit버튼 일단 막기
+			
+			//일반방식으로 전송할때
+/*			$.ajax({
+				url: '/product',
+				type: 'post',
+				data: $("form").serialize(),
+				success: function(result) {
+					 console.log(result);
+				},
+				error: function(xhr,txtStatus,error){
+					console.log(txtStatus,responsetxt);
+				}
+			})*/
+						$.ajax({
+				url: '/product',
+				type: 'post',
+				data: $("form").serialize(),
+				success: function(result) {
+					 console.log(result);
+				},
+				error: function(xhr,txtStatus,error){
+					console.log(txtStatus,responsetxt);
+				}
+			})
+			
+
+		})
+	})
+
+})

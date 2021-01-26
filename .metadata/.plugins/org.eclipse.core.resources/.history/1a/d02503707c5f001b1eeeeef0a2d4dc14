@@ -1,0 +1,15 @@
+package com.company.except;
+
+import org.springframework.stereotype.Controller;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@Slf4j
+public class CommonException {
+
+	public String except(Exception e) {
+		log.error("Exception..."+e);
+		return "except/error";
+	}
+}

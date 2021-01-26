@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 이 설정 파일에 기록되는 모든 빈들의 관리를 스프링 컨테이너가 하게 됨 -->
+
+	<!-- MessageBean 클래스의 객체를 생성 -->
+	<bean id="msg" class="com.company.app.MessageBean" />
+
+	<!-- SamsungTv 클래스의 객체를 생성 -->
+	<bean id="samsung" class="com.company.poly.SamsungTv" />
+
+	<!-- speaker 클래스의 객체를 생성 -->
+	<bean id="sony" class="com.company.poly.SonySpeaker" />
+	<bean id="apple" class="com.company.poly.AppleSpeaker" />
+
+	<!-- LgTv 클래스의 객체를 생성하면서 speaker 객체 초기화를 생성자 통해서 하는 방식 -->
+	<!--<bean id="lg" class="com.company.poly.LgTv">
+		<constructor-arg ref="apple"/>
+	</bean> -->
+	
+	
+	<!-- speaker 클래스의 객체 초기화를 setter메소드를 통해서 하는 방식 -->
+	<bean id="lg" class="com.company.poly.LgTv">
+		<property name="speaker" ref="apple"/>
+		<property name="price" value="350000"/>
+	</bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

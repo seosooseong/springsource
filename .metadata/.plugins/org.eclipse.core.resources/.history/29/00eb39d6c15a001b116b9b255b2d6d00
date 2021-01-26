@@ -1,0 +1,10 @@
+package com.company.domain;
+
+public class ProductVO {
+	private String code;
+	private String pname;
+	private String category;
+	private String amount;
+	private int price;
+	private String etc;
+}
