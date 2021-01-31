@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<!-- 로그인 성공시 동작하는 핸들러 객체 생성
+	<bean id="customLoginHandler" class="com.company.handler.CustomLoginSuccessHandler" /> -->
+	
+	 <!-- 패스워드 인코더 -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<!-- http로 들어오는 요청에 대해 접근 통제를 위한 필터 기록 -->
+	<security:http>
+		<security:intercept-url pattern="/security/all" access="permitAll"/>
+		<security:intercept-url pattern="/security/member" access="hasRole('ROLE_MEMBER')"/>
+		<security:intercept-url pattern="/security/admin" access="hasRole('ROLE_ADMIN')"/>
+		
+		<!-- 권한이 없는 사용자가 접근이 제한된 URI에 접근하는 경우 동작 
+			default 상태 : 403 페이지를 보여줌, 사용자가 원하는 페이지로 이동하기
+		-->
+		<security:access-denied-handler error-page="/accessError"/> <!-- 컨트롤러 경로로 넘겨주는것 -->
+	
+		
+		<!-- 사용자가 원하는 로그인 폼을 띄우기 위해 login-page 옵션 사용 -->
+			<security:form-login/>
+		<!-- <security:form-login login-page="/security/login" authentication-success-handler-ref="customLoginHandler"/> -->
+		<!-- security가 제공하는 기본 로그아웃 -->
+		<security:logout invalidate-session="true" logout-success-url="/"/>
+	</security:http>
+	
+	<!-- 인증을 어떤 방식으로 할 것인지 기록 -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service><!-- user인증을 in-memory방식으로 진행 -->
+				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
+				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

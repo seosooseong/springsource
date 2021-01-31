@@ -1,3 +1,6 @@
+select * from spring_member;
+
+
 
 -- 파일 첨부 테이블 생성
 create table spring_attach(

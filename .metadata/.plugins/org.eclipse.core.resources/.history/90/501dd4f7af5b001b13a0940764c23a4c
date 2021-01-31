@@ -1,7 +1,0 @@
-package com.company.mapper;
-
-import com.company.domain.FileAttach;
-
-public interface AttachMaper {
-	public int insert(FileAttach attach)
-}

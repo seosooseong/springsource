@@ -1,5 +1,0 @@
-@charset "UTF-8";
-.uploadResult{
-	width:100%,
-	background-color : gray;
-}

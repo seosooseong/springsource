@@ -4,8 +4,9 @@
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="header4-dark"/>
+		<item key="selection" value="serv"/>
 		<list key="findhistory">
+			<item value="serv"/>
 			<item value="header4-dark"/>
 			<item value="about"/>
 			<item value="fileCallPath"/>
