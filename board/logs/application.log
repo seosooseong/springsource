@@ -5,3 +5,5 @@
 2021-01-29 11:42:31,113 INFO c.c.c.AuthTest [main] 테스트 호출
 2021-01-29 12:41:53,704 INFO c.c.c.MemberTest [main] 테스트 호출
 2021-01-29 12:42:20,226 INFO c.c.c.AuthTest [main] 테스트 호출
+2021-01-31 21:48:24,353 INFO c.c.c.MemberTest [main] 테스트 호출
+2021-01-31 21:48:35,687 INFO c.c.c.AuthTest [main] 테스트 호출
