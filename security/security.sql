@@ -1,3 +1,16 @@
+--admin90 ROLE_MEMBER 권한 부여 210201
+INSERT INTO spring_member_auth values('admin90','ROLE_MEMBER');
+
+-- 스프링 시큐리티에서 remembr me 를 위해 기본적으로 구현하는 테이블
+
+create table persistent_logins(
+	username varchar2(64) not null,
+	series varchar2(64) not null,
+	token varchar2(64) not null,
+	last_used timestamp not null
+);
+
+
 create table spring_member(
 	userid varchar2(50) not null primary key,
 	userpw varchar2(100) not null,

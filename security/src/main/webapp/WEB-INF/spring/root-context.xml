@@ -12,9 +12,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- root-context db작업 -->
-	<!-- <context:component-scan base-package="com.company.service"/> -->
+	<context:component-scan base-package="com.company.service"/>
+	
 	<!-- @controllerAdvice 활성화 -->
-	<context:component-scan base-package="com.company.except"/>
+	<!-- <context:component-scan base-package="com.company.except"/> -->
 	<mybatis-spring:scan base-package="com.company.mapper"/>
 	
 	<!-- mybatis -->
