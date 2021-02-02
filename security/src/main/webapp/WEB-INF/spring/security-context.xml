@@ -45,7 +45,7 @@
 	<!-- 인증을 어떤 방식으로 할 것인지 기록 -->
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="userDetail">
-		<!-- ①user인증을 in-memory방식으로 진행
+		<!-- ①user인증을memory방식으로 진행
 			<security:user-service>
 				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
 				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN"/>
