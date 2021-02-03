@@ -65,18 +65,3 @@ public class ReplyController {
 			new ResponseEntity<String>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

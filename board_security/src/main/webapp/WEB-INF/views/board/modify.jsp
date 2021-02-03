@@ -84,5 +84,11 @@
 <script>
 	var bnoVal = ${board.bno};
 </script>
+<script>
+	//토큰값 생성
+	var csrfHeaderName ="${_csrf.headerName}";
+	var csrfTokenValue ="${_csrf.token}";
+
+</script>
 <script src="/resources/js/modify.js"></script>
 <%@include file="../includes/footer.jsp"%>

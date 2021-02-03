@@ -11,6 +11,9 @@ var replyService = (function() {
 			type: 'post',
 			url: '/replies/new',
 			contentType: 'application/json;charset=utf-8',
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data: JSON.stringify(reply),
 			success: function(result) {
 				if (callback) {
@@ -40,12 +43,19 @@ var replyService = (function() {
 		})
 	}//getList end
 
-	function remove(rno, callback) {
+	function remove(rno,replyer, callback) { //replyer추가
 		console.log("remove 호출");
 
 		$.ajax({
 			url: '/replies/' + rno,
 			type: 'delete',
+			contentType:"application/json;charset=utf-8", //컨트롤러에서 사용하기 위해
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
+			data:JSON.stringify({
+				replyer:replyer
+			}),
 			success: function(result) {
 				if (callback) {
 					callback(result);
@@ -59,6 +69,9 @@ var replyService = (function() {
 		$.ajax({
 			url: '/replies/' + reply.rno,
 			type: 'put',
+			beforeSend: function(xhr){
+			xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			contentType: 'application/json;charset=utf-8',
 			data: JSON.stringify(reply),
 			success: function(result) {

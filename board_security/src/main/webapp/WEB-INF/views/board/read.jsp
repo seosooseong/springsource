@@ -117,16 +117,16 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="">댓글내용</label> <input type="text" class="form-control"
-						name="reply" value="댓글내용" />
+					<label for="">댓글내용</label> 
+					<input type="text" class="form-control" name="reply" value="댓글내용" />
 				</div>
 				<div class="form-group">
-					<label for="">작성자</label> <input type="text" class="form-control"
-						name="replyer" value="작성자" />
+					<label for="">작성자</label> 
+					<input type="text" class="form-control" name="replyer" value="작성자"  />
 				</div>
 				<div class="form-group">
-					<label for="">작성일</label> <input type="text" class="form-control"
-						name="replyDate" value="작성일" />
+					<label for="">작성일</label> 
+					<input type="text" class="form-control" name="replyDate" value="작성일" />
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -162,6 +162,18 @@
 	//댓글 페이지 영역 가져오기
 	var replyPageFooter = $(".panel-footer");
 	
+	
+	//토큰값 생성
+	var csrfHeaderName ="${_csrf.headerName}";
+	var csrfTokenValue ="${_csrf.token}";
+
+	//댓글 작성자 보여주기 - 회원제 게시판인 경우
+	var replyer = null;
+	
+	<sec:authorize access="isAuthenticated()">
+	replyer ='<sec:authentication property="principal.username"/>'
+	</sec:authorize>	
+
 </script>
 <script src="/resources/js/reply.js"></script>
 <script src="/resources/js/read.js"></script>

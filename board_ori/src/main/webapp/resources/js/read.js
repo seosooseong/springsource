@@ -291,14 +291,3 @@ function showImage(fileCallPath) {
 				   	.animate({width:'100%', height:'100%'},1000);
 	
 }
-
-
-
-
-
-
-
-
-
-
-

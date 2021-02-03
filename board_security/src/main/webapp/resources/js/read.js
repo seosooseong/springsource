@@ -8,6 +8,8 @@ $(function() {
 
 	var form = $("#myform");
 
+	
+	
 	$(".btn-default").click(function() {
 		form.submit();
 	})
@@ -25,9 +27,17 @@ $(function() {
 		//기본디자인에서 댓글 입력을 위한 화면 구성
 		modal.find("input").val("");
 
-		// readonly 속성 제거!!!
-		modalInputReplyer.prop("readonly", "");
+		//현재 로그인 한 사용자 보여주기
+		modalInputReplyer.val(replyer);
 
+
+
+		// readonly 속성 제거!!! ->    속성주기
+		//modalInputReplyer.prop("readonly", "");
+
+		// readonly 속성 제거!!! ->    속성주기
+		modalInputReplyer.prop("readonly", "readonly");
+		
 		//작성 일자 요소 숨기기
 		modalInputReplyDate.closest("div").hide();
 		//등록 닫기 버튼만 보여주기
@@ -157,7 +167,27 @@ $(function() {
 
 	//댓글 삭제
 	$(modalRemoveBtn).click(function() {
-		replyService.remove(modal.data("rno"), function(result) {
+	
+		//로그인 여부 확인
+		
+		if(!replyer){
+			alert("로그인이 필요합니다");
+			modal.modal("hide");
+			return;
+		}
+		//로그인이 되었다면 로그인한 사용자와 모달창에 있는 사용자가
+		//같은지 확인
+		var originalReplyer = modalInputReplyer.val();
+		
+		if(originalReplyer!= replyer){
+			alert("자신의 댓글만 삭제 가능합니다.");
+			modal.modal("hide");
+			return;
+		}
+
+		
+		//댓글 작성자(originalReplyer)도 컨트롤러로 보내기
+		replyService.remove(modal.data("rno"),originalReplyer,function(result) {
 			if (result) {
 				//alert("result:" +result);
 				modal.modal("hide");
@@ -175,9 +205,28 @@ $(function() {
 	$(modalModBtn).click(function() {
 		var reply = {
 			rno: modal.data("rno"),
-			reply: modalInputReply.val()
+			reply: modalInputReply.val(),
+			replyer: modalInputReplyer.val()
 		};
 
+		//로그인 여부 확인
+		
+		if(!replyer){
+			alert("로그인이 필요합니다");
+			modal.modal("hide");
+			return;
+		}
+		
+		//로그인이 되었다면 로그인한 사용자와 모달창에 있는 사용자가
+		//같은지 확인
+		var originalReplyer = modalInputReplyer.val();
+		
+		if(originalReplyer!= replyer){
+			alert("자신의 댓글만 수정 가능합니다.");
+			modal.modal("hide");
+			return;
+		}
+		
 		replyService.update(reply, function(result) {
 			if (result) {
 				//alert("result:" + result)

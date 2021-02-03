@@ -131,7 +131,7 @@ $(".bigPictureWrapper").click(function() {
 		
 	}) //x버튼 종료 (이벤트 위임)
 	
-		//파일버튼이 클릭되어 변화가 일어나는 경우
+	//파일버튼이 클릭되어 변화가 일어나는 경우
 	//현재 목록의 파일을 서버로 보내서 저장하기
 	$("input[type='file']").change(function() {
 		console.log("업로드 호출...");
@@ -158,6 +158,9 @@ $(".bigPictureWrapper").click(function() {
 			processData: false, //데이터를 query string형태로 보낼 것인지 결정(기본값: application/x-www-form-urlencoded)
 			contentType: false, //기본값은 application/x-www-form-urlencoded (파일 첨부이므로 ultiple)
 			data: formData,
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			success: function(result) {
 				console.log(result);
 				showUploadedFile(result);

@@ -34,7 +34,7 @@
 		<!-- 사용자가 원하는 로그인 폼을 띄우기 위해 login-page 옵션 사용 -->
 		<security:form-login login-page="/member/login" authentication-success-handler-ref="customLoginHandler"/>
 		<!-- security가 제공하는 기본 로그아웃 -->
-		<security:logout invalidate-session="true" logout-success-url="/" delete-cookies="remember-me,JSESSION_ID"/>
+		<security:logout logout-url="/member/logout" invalidate-session="true" logout-success-url="/" delete-cookies="remember-me,JSESSION_ID"/>
 		
 		<!-- remember me -->
 		<security:remember-me data-source-ref="ds" token-validity-seconds="604800"/>

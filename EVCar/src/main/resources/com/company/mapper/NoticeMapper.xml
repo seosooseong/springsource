@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.mapper.NoticeMapper">
+
+	<!-- 전체 조회 -->
+	<!-- <select id="getList" resultType="com.company.domain.NoticeVO">	
+	
+		select * from notice_board where bno > 0	
+	</select> -->
+
+	<!-- 글 작성 -->
+	<insert id="insert">
+		insert into notice_board (bno, title, writer,
+		content)
+		values (seq_board.nextval, #{title}, #{writer}, #{content})
+	</insert>
+
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		insert into notice_board (bno, title, writer, content)
+		values (#{bno},
+		#{title}, #{writer}, #{content})
+	</insert>
+
+	<select id="read" resultType="com.company.domain.NoticeVO">
+		select * from notice_board where
+		bno = #{bno}
+	</select>
+
+
+	<!-- 글 삭제 -->
+	<delete id="delete">
+		delete from notice_board where bno = #{bno}
+	</delete>
+
+	<!-- 글 수정 -->
+	<update id="update">
+		update notice_board
+		set title = #{title},
+		writer =
+		#{writer},
+		content = #{content},
+		updateDate = sysdate
+		where bno = #{bno}
+	</update>
+
+	<!-- 조회수 -->
+	<update id="plusCnt" parameterType="int">
+		update notice_board
+		set
+		readCnt = readCnt+1
+		where bno = #{bno}
+	</update>
+	
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from notice_board where
+
+		<include refid="criteria"></include>
+
+		bno > 0
+
+	</select>
+
+	<!-- 페이징 -->
+	<select id="getListWithPaging"
+		resultType="com.company.domain.NoticeVO">
+  <![CDATA[
+  select 
+    bno, title, content, writer, regDate, updateDate
+  from 
+      (
+      select /*+INDEX_DESC(notice_board pk_board) */
+        rownum rn, bno, title, content, writer, regDate, updateDate 
+      from 
+        notice_board
+      where 
+  ]]>
+		<include refid="criteria"></include>
+      
+  <![CDATA[    
+      rownum <= #{pageNum} * #{amount}
+      )
+  where rn > (#{pageNum} -1) * #{amount}   
+  ]]>
+	</select>
+
+<!-- 동적 SQL -->
+	<sql id="criteria">
+
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	
+</mapper>
