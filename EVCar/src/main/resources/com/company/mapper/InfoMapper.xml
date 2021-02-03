@@ -2,9 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.company.mapper.InfoMapper">
 	
-	<select id="infoList" resultType="com.company.domain.CarInfoVO">
-        select * from carinfo
-        
+	<!-- 등록 -->
+	<insert id="insert">
+		insert into carinfo 
+		(bno,brand,carname,carname_en,cartype,rowprice,highprice,releasedate,fuel,mileage,chargetype,title,content) values 
+		(#{bno},#{brand},#{carname},#{carname_en},#{cartype},#{rowprice},#{highprice},#{releasedate},#{fuel},#{mileage},#{chargetype},#{title},#{content})
+	</insert>
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from carinfo where bno=#{bno}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="update">
+		update carinfo set title=#{title}, content=#{content} where bno=#{bno}
+	</update>
+	
+	<!-- 전체 리스트 -->
+	<select id="list" resultType="com.company.domain.CarInfoVO">
+        SELECT * FROM carinfo where bno>=0 order by bno desc
     </select>
+    
+	<!-- 검색 -->
 
 </mapper>
