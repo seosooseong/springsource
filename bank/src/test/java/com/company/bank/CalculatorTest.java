@@ -13,7 +13,6 @@ public class CalculatorTest {
 		Calculator cal = new Calculator();
 		
 //			  1 :기대값 / 2: 리턴값 / 3: 허용 오차값
-		
 		assertEquals(60, cal.add(10,40), 0);
 	}
 }

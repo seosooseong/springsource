@@ -43,30 +43,30 @@
 
 	<!-- 메인 컨텍츠 -->
     <div class="container">
- 		
+ 		<div>
  	<!--옵션 검색-->
     <fieldset>
       <form action="">
         <legend>차량검색 옵션</legend>
         <div>
           <label for="brand">제조사   :</label>
-          <input type="radio" name="brand" id="" value="" />현대&nbsp;
-          <input type="radio" name="brand" id="" value="" />기아&nbsp;
-          <input type="radio" name="brand" id="" value="" />쉐보레&nbsp;
-          <input type="radio" name="brand" id="" value="" />테슬라&nbsp;
+          <input type="radio" name="brand" id="" value="현대" />현대&nbsp;
+          <input type="radio" name="brand" id="" value="기아" />기아&nbsp;
+          <input type="radio" name="brand" id="" value="쉐보레" />쉐보레&nbsp;
+          <input type="radio" name="brand" id="" value="테슬라" />테슬라&nbsp;
           <input type="radio" name="brand" id="" value="" />기타&nbsp;
         </div>
         <div>
           <label for="type">차종    :</label>
-          <input type="radio" name="type" id="" value="" />소형&nbsp;
-          <input type="radio" name="type" id="" value="" />중형&nbsp;
-          <input type="radio" name="type" id="" value="" />대형&nbsp;
-          <input type="radio" name="type" id="" value="" />SUV&nbsp;
+          <input type="radio" name="type" id="" value="소형차" />소형&nbsp;
+          <input type="radio" name="type" id="" value="중형차" />중형&nbsp;
+          <input type="radio" name="type" id="" value="대형차" />대형&nbsp;
+          <input type="radio" name="type" id="" value="suv" />SUV&nbsp;
         </div>
 
         <div>
           <label for="chargeType">충전방식  :</label>
-          <input type="radio" name="chargeType" id="" value="asia" />미국, 아시아&nbsp;
+          <input type="radio" name="chargeType" id="" value="DC콤보" />미국, 아시아&nbsp;
           <input type="radio" name="chargeType" id="" value="eu" />유럽형&nbsp;
         </div>
         <input type="text" />
@@ -74,14 +74,15 @@
         <input type="reset" value="취소" />
       </form>
     </fieldset>   
-   
+   </div>
+   <div>
  	<!-- 리스트 반복문 -->
  	<c:forEach var="vo" items="${list}">
       <div class="row mt-4 my-md-5">
         <div class="col-12 col-sm-6 mb-4 mb-lg-5">
           <div class="image-container">
             <a href="#"
-              ><img src="assets/custom/infoimage/carsampletest.jpg" alt="" class="w-100"
+              ><img src="assets/custom/infoimage/{vo.carname}.jpg" alt="" class="w-100"
             /></a>
           </div>
 
@@ -106,10 +107,10 @@
             <div class="col-12 col-lg-4">
               <span
                 class="fables-main-text-color semi-font font-14 gallery-subtitle"
-                >가격(최저)
+                >가격
               </span>
               <span class="fables-forth-text-color font-14 gallery-subtitle">
-                : <fmt:formatNumber type="number" maxFractionDigits="3" value='${vo.rowprice}'/> 원
+                : <fmt:formatNumber type="number" maxFractionDigits="3" value='${vo.rowprice}'/>원
               </span>
             </div>
             <div class="col-12 col-lg-4">
@@ -130,10 +131,12 @@
           >
         </div>
 
+ </div>
+
       </c:forEach>
-
     <!-- /End-->
-
+    </div><!-- 리스트 div -->
+ </div>  <!-- 컨테이너 div -->
     
 <!-- Start Footer 2 Background Image  -->
 <%@include file="../includes/footer.jsp" %>   

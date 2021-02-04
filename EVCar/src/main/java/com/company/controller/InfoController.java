@@ -52,4 +52,7 @@ public class InfoController {
 	
 	
 	//수정
+	public void modify() {
+		
+	}
 }

@@ -4,10 +4,11 @@
 	
 	<!-- 등록 -->
 	<insert id="insert">
-		insert into carinfo 
-		(bno,brand,carname,carname_en,cartype,rowprice,highprice,releasedate,fuel,mileage,chargetype,title,content) values 
-		(#{bno},#{brand},#{carname},#{carname_en},#{cartype},#{rowprice},#{highprice},#{releasedate},#{fuel},#{mileage},#{chargetype},#{title},#{content})
+		insert into carinfo values 
+		(carinfo_seq.nextval,#{brand},#{carname},#{carname_en},#{cartype},#{rowprice},
+		#{highprice},#{releasedate},#{fuel},#{mileage},#{chargetype},#{title},#{content})
 	</insert>
+	
 	<!-- 삭제 -->
 	<delete id="delete">
 		delete from carinfo where bno=#{bno}
@@ -24,5 +25,7 @@
     </select>
     
 	<!-- 검색 -->
+	<select id="search" resultType="com.company.domain.CarInfoVO">
 
+	</select>
 </mapper>
